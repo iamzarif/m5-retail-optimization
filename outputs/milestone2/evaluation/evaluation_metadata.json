@@ -40,8 +40,8 @@
   "descriptive_test_lowest_MAE_model": "lag_ridge",
   "descriptive_test_lowest_RMSE_model": "lag_ridge",
   "interval_calibration_frozen_before_test": true,
-  "prediction_intervals_available": false,
-  "test_interval_coverage_evaluated": false,
+  "prediction_intervals_available": true,
+  "test_interval_coverage_evaluated": true,
   "fitted_models_fingerprint": "bd3003458236f4a403214094e3e9f0c74b529aca7c1258020c4d15ea0750697b",
   "pretest_protocol_sha256": "35c2510c72d1586eb49a47eecc1ce080c89422de346af2d3a9ebb912f30aea49",
   "prepared_panel_sha256": "f6ab60ec3ac5768b6ba14a8cd399511fa88348f7ce63be8f90ce318c2e3d4bfa",
@@ -66,5 +66,6 @@
     "test_metrics_by_product_quarter.csv": "1e0b6de241b0ae9c3efbba02d24f37901f3a0ebc802f2a5930786b328d536aee",
     "test_quarter_coverage.csv": "c324192fc77f234bc481044355f597c4ac43c2bfe9a56b7681467355b10f6647",
     "test_target_assessment.csv": "59446b413ed0636fadc1d1dac55913cb95ea88824d6fd81483fb607fe869ab35"
-  }
+  },
+  "uncertainty_record": "../uncertainty/uncertainty_metadata.json"
 }

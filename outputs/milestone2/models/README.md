@@ -28,11 +28,11 @@ The polynomial curve describes a smooth time trend and does not adapt to recent 
 
 ## Scope and next step
 
-Validation covers only eight spring weeks at one store. Product/quarter tables describe this window; the Q1/Q2 results cover partial quarters, assigned by target Monday. They do not establish full-year performance or statistical significance. The 56-week test period is excluded from all tuning and selection. Part 4 in Section 5 evaluates these fixed models on the test period; see [the test evaluation](../evaluation/README.md). Prediction intervals, coverage, and uncertainty plots remain Part 5.
+Validation covers only eight spring weeks at one store. Product/quarter tables describe this window; the Q1/Q2 results cover partial quarters, assigned by target Monday. They do not establish full-year performance or statistical significance. The 56-week test period is excluded from all tuning and selection. Part 4 in Section 4 evaluates these fixed models on the test period; see [the test evaluation](../evaluation/README.md). Section 5 provides prediction intervals, coverage, and uncertainty plots; see [the uncertainty results](../uncertainty/README.md).
 
 ## Reproduce and reuse
 
-Open [the Milestone 2 notebook](../../../M5_Milestone_2_Demand_Forecasting.ipynb) and run all cells using the project Python 3.15 environment. Part 3 is Section 4. The fitted models use the existing NumPy least-squares solver; no additional packages are needed. The polynomial's derived calendar time index is documented separately from the prepared lag-feature list in `model_feature_roles.csv`. Store, state, category, and department are omitted from ridge because they are constant or already determined by the selected product identifier.
+Open [the Milestone 2 notebook](../../../M5_Milestone_2_Demand_Forecasting.ipynb) and run all cells using the project Python 3.15 environment. Part 3 is Section 3. The fitted models use the existing NumPy least-squares solver; no additional packages are needed. The polynomial's derived calendar time index is documented separately from the prepared lag-feature list in `model_feature_roles.csv`. Store, state, category, and department are omitted from ridge because they are constant or already determined by the selected product identifier.
 
 The notebook's `m2_predict(state, input_rows)` reconstructs predictions from `fitted_models.json`, including stored scales and coefficients. Supply the prepared past-only features and target-week calendar fields. No target column is needed for prediction. Part 4 retains these original training-fitted parameters and freezes validation-only calibration settings before test scoring; there is no validation/test refit.
 

@@ -25,7 +25,7 @@
   "test_used_for_tuning": false,
   "test_used_for_model_selection": false,
   "test_scored": true,
-  "prediction_intervals_available": false,
+  "prediction_intervals_available": true,
   "checks_passed": true,
   "training_check_count": 10,
   "prepared_panel_sha256": "f6ab60ec3ac5768b6ba14a8cd399511fa88348f7ce63be8f90ce318c2e3d4bfa",
@@ -42,5 +42,7 @@
   },
   "test_evaluation_record": "../evaluation/evaluation_metadata.json",
   "test_coefficient_update_policy": "Original training-fitted coefficients; no validation/test refit",
-  "interval_calibration_frozen_before_test": true
+  "interval_calibration_frozen_before_test": true,
+  "test_interval_coverage_evaluated": true,
+  "prediction_interval_record": "../uncertainty/uncertainty_metadata.json"
 }

@@ -1,0 +1,11 @@
+check,passed,detail
+Original calibration and fitted models preserved,True,"The saved pretest widths, protocol, original coefficients, and validation-selected ridge model are unchanged."
+Every method and level uses identical test observations,True,"Each of four models has both interval levels for all 560 product-weeks, retaining the original point forecasts."
+Bounds are finite nonnegative and nested,True,The 95% interval contains the 80% interval; both contain the point forecast and have valid sales bounds.
+Test labels cannot affect interval construction,True,Removing or replacing every test actual leaves all interval endpoints exactly unchanged.
+Coverage includes endpoints and handles zero sales,True,"Exact endpoints count as covered; below/above misses are distinguished, including at the zero boundary."
+Bounds and all coverage tables reconcile independently,True,"Inclusive interval checks agree with absolute-error thresholds; all aggregate counts, gaps, and widths reconcile."
+Product and quarter summaries reconstruct overall coverage,True,Pool covered counts and weight widths by observations; the two partial quarter groups remain explicitly marked.
+Calibration provenance uses validation only,True,"Saved widths reconcile to ranks 65/77 of each model's 80 validation errors, all dated before the test period."
+Forecast plots cover every model and product,True,Four overview figures each show all ten products and both intervals; a fifth figure compares aggregate coverage.
+Saved intervals summaries and plot manifest round-trip,True,"All five exported tables retain their observation keys, bounds, coverage counts, widths, and dates."

@@ -1,0 +1,95 @@
+{
+  "completed_part": 5,
+  "prediction_intervals_available": true,
+  "test_interval_coverage_evaluated": true,
+  "selected_before_test": "lag_ridge",
+  "models": [
+    "seasonal_naive_52w",
+    "moving_average_4w",
+    "polynomial_trend",
+    "lag_ridge"
+  ],
+  "nominal_levels": [
+    0.8,
+    0.95
+  ],
+  "observations_per_model_per_level": 560,
+  "interval_rows": 4480,
+  "test_weeks": 56,
+  "products": [
+    "FOODS_3_586",
+    "FOODS_3_252",
+    "FOODS_3_714",
+    "FOODS_3_607",
+    "FOODS_3_064",
+    "FOODS_3_555",
+    "FOODS_2_197",
+    "FOODS_3_739",
+    "FOODS_3_501",
+    "FOODS_3_099"
+  ],
+  "test_start": "2015-04-27",
+  "test_end": "2016-05-22",
+  "calibration_source": "../evaluation/pretest_interval_calibration.csv",
+  "calibration_sha256": "219b34af017f644f3227cfa95d442e412a47f78231ba708fa851c3ac65bdf68d",
+  "pretest_protocol_sha256": "35c2510c72d1586eb49a47eecc1ce080c89422de346af2d3a9ebb912f30aea49",
+  "fitted_models_fingerprint": "bd3003458236f4a403214094e3e9f0c74b529aca7c1258020c4d15ea0750697b",
+  "construction": "[max(0, point_forecast - saved_half_width), point_forecast + saved_half_width]; no rounding",
+  "calibration": "80 validation residuals per model, pooled across ten products; 1-based ranks 65 and 77",
+  "test_used_for_interval_calibration": false,
+  "test_used_for_model_selection": false,
+  "test_used_for_refitting": false,
+  "coverage_definition": "100 * count(lower_bound <= actual_units <= upper_bound) / observations",
+  "coverage_gap_definition": "Observed coverage percent minus nominal percent, in percentage points",
+  "width_definition": "upper_bound - lower_bound after zero clipping, in units per product-week",
+  "interval_interpretation": "Individual weekly sales prediction intervals; not simultaneous bands or confidence intervals for mean sales",
+  "limitations": "Serial dependence, pooled product scales, short calibration period, and validation reuse for model selection prevent an exact coverage guarantee",
+  "quarter_rule": "Assign the entire target week to its Monday's calendar quarter; identify partial quarters",
+  "selected_model_results": [
+    {
+      "nominal_coverage": 0.8,
+      "observations": 560,
+      "covered_observations": 454,
+      "coverage_pct": 81.07142857142857,
+      "coverage_gap_pp": 1.0714285714285694,
+      "mean_width_units": 80.21565461768681
+    },
+    {
+      "nominal_coverage": 0.95,
+      "observations": 560,
+      "covered_observations": 533,
+      "coverage_pct": 95.17857142857142,
+      "coverage_gap_pp": 0.1785714285714164,
+      "mean_width_units": 148.94429374033706
+    }
+  ],
+  "forecast_panels": 40,
+  "figures": [
+    "test_forecasts_with_intervals_lag_ridge.png",
+    "test_forecasts_with_intervals_seasonal_naive_52w.png",
+    "test_forecasts_with_intervals_moving_average_4w.png",
+    "test_forecasts_with_intervals_polynomial_trend.png",
+    "test_interval_coverage_comparison.png"
+  ],
+  "checks_passed": true,
+  "uncertainty_check_count": 10,
+  "versions": {
+    "python": "3.15.0",
+    "numpy": "2.5.4",
+    "pandas": "3.1.1",
+    "matplotlib": "3.11.2"
+  },
+  "source_sha256": {
+    "sales_train_evaluation.csv": "4b4a47c44c38380d2a9168216fea8c9ff2f31b1ddb772f8a0995952a038b8aa0",
+    "calendar.csv": "d12b5914ef03e66649adf5dd9e996e6602251c22b7a6af8f1f7e3aa12f8860f5",
+    "sell_prices.csv": "9da3ad1f8b8ccacdbdc70612191dd375ec24a4ac6625c24b75b3bc60b0bed2ef"
+  },
+  "prepared_panel_sha256": "f6ab60ec3ac5768b6ba14a8cd399511fa88348f7ce63be8f90ce318c2e3d4bfa",
+  "result_sha256": {
+    "test_prediction_intervals.csv": "db5b5869b59dff30054d784c75c7f451c2c6699188c18e984cc7c84fbf9f8e81",
+    "interval_coverage.csv": "921d45538978547e74409e1291554c0d9ef09d196eea081ccff6d2d38ab2e72f",
+    "interval_coverage_by_product.csv": "0c653a7bfdcc502b3a1827e653204a5fff0819837f22a054b3bed201ef2d3908",
+    "interval_coverage_by_quarter.csv": "1b3876b7a1fa572e26303503299a8921228899026857a92993e18bdd2774847a",
+    "forecast_plot_manifest.csv": "ac5642aa7d7ede38ded3c50e12aeba775255b7b3063edd6d6daac1624e7daa5d"
+  }
+}
