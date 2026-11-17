@@ -73,7 +73,7 @@ Start with the notebook's unnumbered setup, then follow its five clearly separat
 
 | Section | Completed work |
 |---|---|
-| **1. Set the experiment** | Ten CA_1 products, weekly target, chronological splits, selection audit, and work plan |
+| **1. Set the experiment** | Ten CA_1 products, weekly target, chronological splits, and selection audit |
 | **2. Prepare the final dataset** | Historical sales/price features, calendar inputs, and independent leakage checks |
 | **3. Train and compare models** | Seasonal-naive, four-week-average, polynomial, and ridge models; chronological tuning and validation selection |
 | **4. Evaluate forecasts** | MAE/RMSE/WAPE on 560 common test observations; product/quarter comparisons and the 10% target assessment |
@@ -108,7 +108,7 @@ its analytical outputs; the validation record documents the verified saved copy.
 The raw dataset remains the source of truth; exported subsets are analysis products.
 
 Milestone 1 preserves the original exploratory scope; Milestone 2 contains the
-fixed ten-product experiment and a work plan organized by activity and deliverable.
-Milestone 2 includes trained models, validation/test comparisons, prediction intervals, and coverage analysis.
+fixed ten-product experiment, trained models, validation/test comparisons,
+prediction intervals, and coverage analysis.
 Inventory and routing optimization remain later milestones.
 M5 describes U.S. retail activity: SNAP is defined in the notebook, and prices are in USD.

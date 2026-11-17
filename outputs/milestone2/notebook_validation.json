@@ -8,7 +8,7 @@
     5
   ],
   "notebook_path": "/Users/hshazel/Projects/m5-retail-optimization/M5_Milestone_2_Demand_Forecasting.ipynb",
-  "notebook_sha256": "7637d5fa115d2f8d684e4398b09bf23ecba703850d136f4c4e55d6cb7382f4ff",
+  "notebook_sha256": "3582195b548c12381edad7e5abfba7e0804a1a111fd7c9f1d6a70efbc54d8a2f",
   "python_executable": "/Users/hshazel/Projects/m5-retail-optimization/.venv/bin/python",
   "kernel_name": "m5-exploration",
   "execution_method": "nbclient; fresh project Python 3.15 kernel, isolated working directory",
@@ -109,5 +109,12 @@
     "models/figures/validation_model_comparison.png"
   ],
   "submission_writeup_assembled": false,
-  "team": "Group 2 - MIA5130A Systems Optimization and Management"
+  "team": "Group 2 - MIA5130A Systems Optimization and Management",
+  "documentation_update": {
+    "description": "Removed work-plan table and references; renumbered the data-preparation handoff to 1.3.",
+    "previously_executed_notebook_sha256": "7637d5fa115d2f8d684e4398b09bf23ecba703850d136f4c4e55d6cb7382f4ff",
+    "code_cells_and_outputs_unchanged": true,
+    "notebook_reexecuted": false,
+    "section_navigation_verified_in_rendered_html": true
+  }
 }
