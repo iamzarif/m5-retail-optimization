@@ -1,0 +1,170 @@
+Product_ID,Forecasted_Demand,item_id,sell_price,Allocated_Inventory,Expected_Revenue
+FOODS_2_197,150,FOODS_2_197,3.42,100,342.0
+FOODS_3_099,116,FOODS_3_099,2.56,0,0.0
+FOODS_3_607,106,FOODS_3_607,2.48,0,0.0
+FOODS_3_586,255,FOODS_3_586,1.68,0,0.0
+FOODS_3_555,153,FOODS_3_555,1.68,0,0.0
+FOODS_3_714,132,FOODS_3_714,1.58,0,0.0
+FOODS_3_252,271,FOODS_3_252,1.58,0,0.0
+FOODS_3_739,70,FOODS_3_739,1.5,0,0.0
+FOODS_3_064,186,FOODS_3_064,1.18,0,0.0
+FOODS_3_501,165,FOODS_3_501,0.8,0,0.0
+
+Product_ID,Forecasted_Demand,Demand_Proportion,Allocated_Inventory
+FOODS_2_197,150,0.09351620947630923,9
+FOODS_3_064,186,0.11596009975062344,12
+FOODS_3_099,116,0.07231920199501247,7
+FOODS_3_252,271,0.16895261845386533,17
+FOODS_3_501,165,0.10286783042394015,10
+FOODS_3_555,153,0.09538653366583541,10
+FOODS_3_586,255,0.1589775561097257,16
+FOODS_3_607,106,0.06608478802992519,7
+FOODS_3_714,132,0.08229426433915212,8
+FOODS_3_739,70,0.043640897755610975,4
+
+{
+    "scenario_1_total_units": 100,
+    "scenario_2_total_units": 100,
+    "scenario_2_expected_revenue": 342.0
+}
+{
+  "nbformat": 4,
+  "nbformat_minor": 4,
+  "metadata": {
+    "title": "Milestone 3 \u2014 Inventory Optimization"
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "# Milestone 3 \u2014 Inventory Optimization\n\n",
+        "**Group 2 - MIA5130A Systems Optimization and Management**\n\n",
+        "**Goal**: Use demand forecasts to determine optimal inventory levels that minimize holding and shortage costs.\n\n",
+        "### Scenario 1\n",
+        "We manage a retail store with a total storage capacity of 100 units, stocking 10 different products. Inventory must be allocated proportionally to the forecasted demand for the upcoming week. We cannot stock more units than the demand forecast for any product."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "import json\n",
+        "import re\n",
+        "import pandas as pd\n",
+        "import numpy as np\n",
+        "\n",
+        "# 1. Parse Milestone 2 Notebook to find the selected 10 products\n",
+        "nb_path = '/content/M5_Milestone_2_Demand_Forecasting.ipynb'\n",
+        "with open(nb_path, 'r', encoding='utf-8') as f:\n",
+        "    m2_nb = json.load(f)\n",
+        "\n",
+        "item_ids = []\n",
+        "for cell in m2_nb.get('cells', []):\n",
+        "    if cell['cell_type'] == 'code':\n",
+        "        source = \"\".join(cell.get('source', []))\n",
+        "        if 'M2_EXPERIMENT = {' in source:\n",
+        "            match = re.search(r'\"item_ids\":\\s*\\((.*?)\\)', source, re.DOTALL)\n",
+        "            if match:\n",
+        "                items_str = match.group(1)\n",
+        "                item_ids = [i.strip(' \"\\',\\n') for i in items_str.split(',') if i.strip(' \"\\',\\n')]\n",
+        "            break\n",
+        "\n",
+        "print(f\"Extracted {len(item_ids)} target items from Milestone 2: {item_ids}\")\n",
+        "\n",
+        "# 2. Load the actual sales data to get recent demand\n",
+        "print(\"Loading sales data...\")\n",
+        "sales = pd.read_csv('/content/sales_train_evaluation.csv')\n",
+        "sales_filtered = sales[(sales['store_id'] == 'CA_1') & (sales['item_id'].isin(item_ids))].copy()\n",
+        "\n",
+        "last_7_days = [f'd_{i}' for i in range(1935, 1942)]\n",
+        "forecasts = []\n",
+        "for _, row in sales_filtered.iterrows():\n",
+        "    weekly_demand = row[last_7_days].sum()\n",
+        "    forecasts.append({'Product_ID': row['item_id'], 'Forecasted_Demand': weekly_demand})\n",
+        "\n",
+        "df_real_inv = pd.DataFrame(forecasts)\n",
+        "df_real_inv['Forecasted_Demand'] = df_real_inv['Forecasted_Demand'].clip(lower=1)\n",
+        "\n",
+        "# 3. Apply Inventory Optimization Logic (100 Unit Capacity)\n",
+        "TOTAL_CAPACITY = 100\n",
+        "total_demand = df_real_inv['Forecasted_Demand'].sum()\n",
+        "df_real_inv['Demand_Proportion'] = df_real_inv['Forecasted_Demand'] / total_demand\n",
+        "\n",
+        "df_real_inv['Allocated_Inventory'] = np.floor(df_real_inv['Demand_Proportion'] * TOTAL_CAPACITY).astype(int)\n",
+        "\n",
+        "allocated_sum = df_real_inv['Allocated_Inventory'].sum()\n",
+        "remainder = TOTAL_CAPACITY - allocated_sum\n",
+        "if remainder > 0:\n",
+        "    fractional_parts = (df_real_inv['Demand_Proportion'] * TOTAL_CAPACITY) - df_real_inv['Allocated_Inventory']\n",
+        "    indices_to_increment = fractional_parts.nlargest(remainder).index\n",
+        "    df_real_inv.loc[indices_to_increment, 'Allocated_Inventory'] += 1\n",
+        "\n",
+        "df_real_inv['Allocated_Inventory'] = df_real_inv[['Allocated_Inventory', 'Forecasted_Demand']].min(axis=1)\n",
+        "\n",
+        "print(f\"\\n--- OPTIMIZATION RESULTS ---\")\n",
+        "print(f\"Total Allocated Units: {df_real_inv['Allocated_Inventory'].sum()} / {TOTAL_CAPACITY}\")\n",
+        "display(df_real_inv.sort_values('Allocated_Inventory', ascending=False).reset_index(drop=True))"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Scenario 2: Revenue/Profit Maximization\n",
+        "In this scenario, instead of a proportional allocation, we want to maximize our total revenue. With a strict capacity limit of 100 units, the optimal strategy (solving the bounded knapsack problem where weight = 1 per unit) is a greedy approach:\n",
+        "1. Rank items by their selling price (highest to lowest).\n",
+        "2. Allocate inventory to the most expensive items up to their forecasted demand.\n",
+        "3. Stop when the 100-unit capacity is reached."
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": null,
+      "metadata": {},
+      "outputs": [],
+      "source": [
+        "print(\"Loading sell prices data...\")\n",
+        "prices = pd.read_csv('/content/sell_prices.csv')\n",
+        "\n",
+        "prices_filtered = prices[(prices['store_id'] == 'CA_1') & (prices['item_id'].isin(item_ids))]\n",
+        "latest_prices = prices_filtered.loc[prices_filtered.groupby('item_id')['wm_yr_wk'].idxmax()]\n",
+        "latest_prices = latest_prices[['item_id', 'sell_price']]\n",
+        "\n",
+        "df_scenario2 = df_real_inv[['Product_ID', 'Forecasted_Demand']].copy()\n",
+        "df_scenario2 = df_scenario2.merge(latest_prices, left_on='Product_ID', right_on='item_id', how='left')\n",
+        "\n",
+        "df_scenario2 = df_scenario2.sort_values(by='sell_price', ascending=False).reset_index(drop=True)\n",
+        "\n",
+        "TOTAL_CAPACITY = 100\n",
+        "remaining_capacity = TOTAL_CAPACITY\n",
+        "allocated = []\n",
+        "\n",
+        "for index, row in df_scenario2.iterrows():\n",
+        "    allocation = min(row['Forecasted_Demand'], remaining_capacity)\n",
+        "    allocated.append(allocation)\n",
+        "    remaining_capacity -= allocation\n",
+        "\n",
+        "df_scenario2['Allocated_Inventory'] = allocated\n",
+        "df_scenario2['Expected_Revenue'] = df_scenario2['Allocated_Inventory'] * df_scenario2['sell_price']\n",
+        "\n",
+        "print(f\"\\n--- SCENARIO 2: REVENUE MAXIMIZATION RESULTS ---\")\n",
+        "print(f\"Total Allocated Units: {df_scenario2['Allocated_Inventory'].sum()} / {TOTAL_CAPACITY}\")\n",
+        "print(f\"Projected Revenue: ${df_scenario2['Expected_Revenue'].sum():.2f}\")\n",
+        "display(df_scenario2[['Product_ID', 'sell_price', 'Forecasted_Demand', 'Allocated_Inventory', 'Expected_Revenue']])"
+      ]
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### Milestone 3 Conclusion\n",
+        "We have successfully addressed both scenarios for **Milestone 3: Inventory Optimization**:\n",
+        "*   **Scenario 1:** Ensured a balanced representation of products by allocating inventory proportionally to forecasted demand.\n",
+        "*   **Scenario 2:** Maximized financial returns by prioritizing high-value items within the constraints of the forecast and storage capacity."
+      ]
+    }
+  ]
+}
