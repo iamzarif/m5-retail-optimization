@@ -1,0 +1,11 @@
+Product_ID,Store_ID,Forecast_Origin,Week_Start,Week_End,Forecast_Model,Forecasted_Demand,sell_price_USD,Price_Information_Date,Price_Record_Week,Sales_Lag_1w,Sales_Mean_4w,No_Actual_Future_Sales_Used
+FOODS_3_586,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,273.082769,1.68,2016-05-20,11616,255,288.75,True
+FOODS_3_252,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,258.983515,1.58,2016-05-20,11616,271,271.0,True
+FOODS_3_714,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,125.031702,1.58,2016-05-20,11616,132,134.25,True
+FOODS_3_607,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,102.549307,2.48,2016-05-20,11616,106,122.25,True
+FOODS_3_064,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,179.849954,1.18,2016-05-20,11616,186,198.0,True
+FOODS_3_555,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,134.396048,1.68,2016-05-20,11616,153,143.75,True
+FOODS_2_197,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,133.916064,3.42,2016-05-20,11616,150,153.5,True
+FOODS_3_739,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,83.344151,1.50,2016-05-20,11616,70,70.5,True
+FOODS_3_501,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,153.857724,0.80,2016-05-20,11616,165,160.5,True
+FOODS_3_099,CA_1,2016-05-22,2016-05-23,2016-05-29,Milestone 2 validation-selected lag-based ridge; alpha=100; frozen 2015-03-01 coefficients,105.794075,2.56,2016-05-20,11616,116,102.5,True

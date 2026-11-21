@@ -1,0 +1,11 @@
+Product_ID,Original_Forecasted_Demand,Reproduced_Ridge_Forecasted_Demand,Original_Sell_Price_USD,AsOf_2016_05_20_Sell_Price_USD,Original_Scenario1_Units,Original_Scenario2_Units,Reproduced_Scenario1_Units,Reproduced_Scenario2_Units,Original_Inputs_Undated
+FOODS_3_586,320,273.082769,2.48,1.68,20,24,17,22,True
+FOODS_3_252,315,258.983515,2.24,1.58,20,22,17,13,True
+FOODS_3_714,198,125.031702,1.58,1.58,13,10,8,6,True
+FOODS_3_607,165,102.549307,1.18,2.48,11,6,7,8,True
+FOODS_3_064,152,179.849954,1.0,1.18,10,5,11,9,True
+FOODS_3_555,140,134.396048,1.48,1.68,9,6,9,11,True
+FOODS_2_197,75,133.916064,5.24,3.42,5,12,9,11,True
+FOODS_3_739,70,83.344151,3.98,1.50,4,9,5,4,True
+FOODS_3_501,65,153.857724,1.98,0.80,4,4,10,7,True
+FOODS_3_099,60,105.794075,1.28,2.56,4,2,7,9,True

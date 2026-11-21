@@ -1,0 +1,41 @@
+{
+  "method": "Analytical largest-remainder apportionment + price-ordered bounded integer allocation",
+  "pricing_currency": "USD",
+  "store_id": "CA_1",
+  "forecast_origin": "2016-05-22",
+  "forecast_start": "2016-05-23",
+  "forecast_end": "2016-05-29",
+  "forecasting_model": "Milestone 2 lag-based ridge regression, alpha=100; fit ends 2015-03-01",
+  "m2_reproduced_check": {
+    "test_observations": 560,
+    "test_MAE": 25.117915977858836,
+    "test_RMSE": 36.512154705449625,
+    "train_rows": 1553,
+    "train_cutoff": "2015-03-01",
+    "ridge_alpha": 100.0
+  },
+  "forecast_total_units": 1550.8053078570158,
+  "capacity_units": 100,
+  "proportionality_tolerance_fraction": 0.2,
+  "scenario1_allocated_units": 100,
+  "scenario1_revenue_usd": 177.72,
+  "scenario2_allocated_units": 100,
+  "scenario2_revenue_usd": 188.18,
+  "revenue_increase_usd": 10.46,
+  "revenue_increase_pct": 5.885662840423134,
+  "scenario1_total_abs_quota_deviation": 3.2858282049974123,
+  "scenario2_total_abs_quota_deviation": 25.309814822064308,
+  "all_units_below_forecast": true,
+  "price_information_dates": [
+    "2016-05-20"
+  ],
+  "original_supplied_scenario1_revenue_usd": 206.4,
+  "original_supplied_scenario2_revenue_usd": 254.74,
+  "notes": [
+    "These are conditional potential sales revenues (not profits).",
+    "Original allocation inputs were undated and did not reconcile to the reproduced ridge forecasts and latest known completed-week prices.",
+    "20% proportionality band is an explicit policy assumption, not part of the M5 dataset or coursework brief.",
+    "Selling prices use last fully completed retail week ending May 20, 2016, and may differ during forecast week.",
+    "Future demand is unobserved in the source data. No future labels are used."
+  ]
+}

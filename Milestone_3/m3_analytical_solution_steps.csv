@@ -1,0 +1,6 @@
+sequence,product_id,price_usd,minimum_units,added_units,final_units_for_product,remaining_capacity_after_step,incremental_revenue_usd
+1,FOODS_2_197,3.42,6,5,11,20,17.10
+2,FOODS_3_099,2.56,5,4,9,16,10.24
+3,FOODS_3_607,2.48,5,3,8,13,7.44
+4,FOODS_3_555,1.68,6,5,11,8,8.40
+5,FOODS_3_586,1.68,14,8,22,0,13.44
